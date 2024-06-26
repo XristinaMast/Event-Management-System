@@ -119,4 +119,4 @@ def delete_appointment(appointment_id):
         return Response(json.dumps({'error': 'Appointment not found'}), mimetype='application/json')
 
 if __name__ == '__main__':
-    app.run(debug=True, host=' ``````')
+    app.run(debug=True, host='0.0.0.0')
