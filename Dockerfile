@@ -7,8 +7,6 @@ WORKDIR /app
 # Αντιγραφή του requirements.txt και εγκατάσταση των εξαρτήσεων
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-
-# Αντιγραφή του υπόλοιπου κώδικα της εφαρμογής
 RUN apt-get update
 RUN apt-get install -y python3
 RUN apt-get install -y python3-pip
