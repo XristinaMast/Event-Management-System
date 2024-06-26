@@ -6,6 +6,9 @@ import json
 import uuid
 import time
 
+app.config["MONGO_URI"] = "mongodb://mongodb:27017/HospitalDB"
+mongo = PyMongo(app)
+
 # Connect to our local MongoDB
 client = MongoClient('mongodb://localhost:27017/')
 # Choose database
