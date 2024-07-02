@@ -99,5 +99,5 @@ Python, Flask, MongoDB, Docker & Docker Compose.
 
 
 6.Διαγραφή ραντεβού:
-
+   
    Endpoint: DELETE /api/v1/appointments/<appointment_id>
