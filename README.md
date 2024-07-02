@@ -43,59 +43,59 @@ Python, Flask, MongoDB, Docker & Docker Compose.
 
 1. Εγγραφή γιατρών:
 
-   Endpoint: POST /api/v1/doctors
+         Endpoint: POST /api/v1/doctors
 
    Σώμα αιτήματος (JSON):
 
    (Παράδειγμα χρήσης)
 
-   { "name": "Dr. John Doe",
-   
-      "specialization": "Cardiology",
-   
-      "username": "johndoe",
-   
-      "password": "password123"}
+         { "name": "Dr. John Doe",
+         
+            "specialization": "Cardiology",
+         
+            "username": "johndoe",
+         
+            "password": "password123"}
 
 
 2. Εγγραφή ασθενών:
 
-   Endpoint: POST /api/v1/patients
+         Endpoint: POST /api/v1/patients
 
    Σώμα αιτήματος (JSON):
 
    (Παράδειγμα χρήσης)
 
-   { "name": "Jane Smith",
- 
-     "dob": "1985-08-15",
-  
-     "username": "janesmith",
-  
-     "password": "password123"}
+         { "name": "Jane Smith",
+       
+           "dob": "1985-08-15",
+        
+           "username": "janesmith",
+        
+           "password": "password123"}
 
    
 3. Δημιουργία ραντεβού:
 
-   Endpoint: POST /api/v1/appointments
+         Endpoint: POST /api/v1/appointments
 
    Σώμα αιτήματος (JSON):
    
    (Παράδειγμα χρήσης)
 
-   { "doctor_id": "60c72b2f5f1b2c001f8e4e61",
-     "patient_id": "60c72b2f5f1b2c001f8e4e62",
-     "date": "2023-07-10T10:00:00"}
+         { "doctor_id": "60c72b2f5f1b2c001f8e4e61",
+           "patient_id": "60c72b2f5f1b2c001f8e4e62",
+           "date": "2023-07-10T10:00:00"}
 
 
 4. Προβολή πληροφοριών για γιατρούς:
 
-   Endpoint: GET /api/v1/doctors/<doctor_id>
+         Endpoint: GET /api/v1/doctors/<doctor_id>
 
 
 5. Προβολή πληροφοριών ασθενών:
 
-   Endpoint: GET /api/v1/patients/<patient_id>
+         Endpoint: GET /api/v1/patients/<patient_id>
 
 
 6.Διαγραφή ραντεβού:
