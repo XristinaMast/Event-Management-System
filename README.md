@@ -43,52 +43,61 @@ Python, Flask, MongoDB, Docker & Docker Compose.
 
 1. Εγγραφή γιατρών:
 
-Endpoint: POST /api/v1/doctors
-Σώμα αιτήματος (JSON):
-(Παράδειγμα χρήσης)
-{ "name": "Dr. John Doe",
-   "specialization": "Cardiology",
-   "username": "johndoe",
-   "password": "password123"
+   Endpoint: POST /api/v1/doctors
 
-}
+   Σώμα αιτήματος (JSON):
+
+   (Παράδειγμα χρήσης)
+
+   { "name": "Dr. John Doe",
+   
+      "specialization": "Cardiology",
+   
+      "username": "johndoe",
+   
+      "password": "password123"}
+
 
 2. Εγγραφή ασθενών:
 
-Endpoint: POST /api/v1/patients
-Σώμα αιτήματος (JSON):
-json
-Αντιγραφή κώδικα
-{
-  "name": "Jane Smith",
-  "dob": "1985-08-15",
-  "username": "janesmith",
-  "password": "password123"
-}
+   Endpoint: POST /api/v1/patients
 
-3.Δημιουργία ραντεβού:
+   Σώμα αιτήματος (JSON):
 
-Endpoint: POST /api/v1/appointments
-Σώμα αιτήματος (JSON):
-json
-Αντιγραφή κώδικα
-{
-  "doctor_id": "60c72b2f5f1b2c001f8e4e61",
-  "patient_id": "60c72b2f5f1b2c001f8e4e62",
-  "date": "2023-07-10T10:00:00"
-}
+   (Παράδειγμα χρήσης)
 
-4.Προβολή πληροφοριών για γιατρούς:
+   { "name": "Jane Smith",
+ 
+     "dob": "1985-08-15",
+  
+     "username": "janesmith",
+  
+     "password": "password123"}
 
-Endpoint: GET /api/v1/doctors/<doctor_id>
-Αντικαταστήστε <doctor_id> με το μοναδικό αναγνωριστικό του γιατρού.
+   
+3. Δημιουργία ραντεβού:
 
-5.Προβολή πληροφοριών ασθενών:
+   Endpoint: POST /api/v1/appointments
 
-Endpoint: GET /api/v1/patients/<patient_id>
-Αντικαταστήστε <patient_id> με το μοναδικό αναγνωριστικό του ασθενή.
+   Σώμα αιτήματος (JSON):
+   
+   (Παράδειγμα χρήσης)
+
+   { "doctor_id": "60c72b2f5f1b2c001f8e4e61",
+     "patient_id": "60c72b2f5f1b2c001f8e4e62",
+     "date": "2023-07-10T10:00:00"}
+
+
+4. Προβολή πληροφοριών για γιατρούς:
+
+   Endpoint: GET /api/v1/doctors/<doctor_id>
+
+
+5. Προβολή πληροφοριών ασθενών:
+
+   Endpoint: GET /api/v1/patients/<patient_id>
+
 
 6.Διαγραφή ραντεβού:
 
-Endpoint: DELETE /api/v1/appointments/<appointment_id>
-Αντικαταστήστε <appointment_id> με το μοναδικό αναγνωριστικό του ραντεβού που θέλετε να διαγράψετε.
+   Endpoint: DELETE /api/v1/appointments/<appointment_id>
