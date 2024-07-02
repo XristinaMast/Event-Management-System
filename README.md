@@ -41,18 +41,18 @@ Python, Flask, MongoDB, Docker & Docker Compose.
 # 5. Τρόπος Χρήσης του Συστήματος
 Αρχικά εκτελούμε την εντολή "docker-compose up --build" για να δημιουργήσουμε τα Docker images και να ξεκινήοσυν τα containers. Ύστερα ανοίγουμε την διεύθυνση 'http://localhost:5000' όπου η εφαρμογή θα πρέπει να είναι διαθέσιμη. Εκεί θα μπορούμε να χρησιμοποιήσουμε τα παρα΄κάτω endpoints για την διαχείριση των δεδομένων των γιατρών, των ασθενών και των ραντεβού:
 
-Εγγραφή γιατρών:
+1. Εγγραφή γιατρών:
 
 Endpoint: POST /api/v1/doctors
 Σώμα αιτήματος (JSON):
-json
-Αντιγραφή κώδικα
-{
-  "name": "Dr. John Doe",
-  "specialization": "Cardiology",
-  "username": "johndoe",
-  "password": "password123"
+(Παράδειγμα χρήσης)
+{ "name": "Dr. John Doe",
+   "specialization": "Cardiology",
+   "username": "johndoe",
+   "password": "password123"
+
 }
+
 Εγγραφή ασθενών:
 
 Endpoint: POST /api/v1/patients
