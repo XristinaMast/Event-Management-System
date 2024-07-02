@@ -88,6 +88,7 @@ JSON
 }
 
 Λήψη πληροφοριών για ένα συγκεκριμένο ραντεβού στέλνοντας ένα GET request στο endpoint /api/v1/appointments/<appointment_id>, όπου <appointment_id> είναι το ID του ραντεβού στη βάση δεδομένων.
+
 Διαγραφή ενός ραντεβού: Μπορείτε να διαγράψετε ένα ραντεβού στέλνοντας ένα DELETE request στο endpoint /api/v1/appointments/<appointment_id>, όπου <appointment_id> είναι το ID του ραντεβού στη βάση δεδομένων.
 
 
