@@ -19,5 +19,3 @@ services:
 
 networks:
   default:
-    external:
-      name: proxy
