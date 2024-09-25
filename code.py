@@ -6,7 +6,7 @@ from datetime import datetime
 import json
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://mongodb:27017/HospitalDB"
+app.config["MONGO_URI"] = "mongodb://mongodb:27017/DigiMeet"
 app.secret_key = 'SecretKey/DidntSeeThatComingHUH?'
 mongo = PyMongo(app)
 
