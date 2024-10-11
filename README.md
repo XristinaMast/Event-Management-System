@@ -1,106 +1,102 @@
-## Περιεχόμενα
+## Table of Contents
 
-1. [Επιπλέον Παραδοχές και Παρεκκλίσεις](#Επιπλέον-Παραδοχές-και-Παρεκκλίσεις)
-2. [Χρησιμοποιούμενες Τεχνολογίες](#Χρησιμοποιούμενες-Τεχνολογίες)
-3. [Περιγραφή των Αρχείων](#Περιγραφή-των-Αρχείων)
-4. [Πώς Εκτελείται το Σύστημα](#Πώς-Εκτελείται-το-Σύστημα)
-5. [Πώς να Χρησιμοποιήσετε το Σύστημα (με Παραδείγματα Εκτέλεσης)](#Πώς-να-Χρησιμοποιήσετε-το-Σύστημα-με-Παραδείγματα-Εκτέλεσης)
-6. [Αναφορές](#Αναφορές)
+1. [Additional Assumptions and Deviations](#Additional-Assumptions-and-Deviations)
+2. [Technologies Used](#Technologies-Used)
+3. [File Descriptions](#File-Descriptions)
+4. [How to Run the System](#How-to-Run-the-System)
+5. [How to Use the System (with Execution Examples)](#How-to-Use-the-System-with-Execution-Examples)
+6. [References](#References)
 
+## Additional Assumptions and Deviations
+- The admin is automatically created when the system starts and cannot be registered like normal users. The admin login credentials are:
+  - **Username**: `admin`
+  - **Password**: `@dm!n69%`
+- The system assumes that events are stored in cookies.
+- Event dates are compared using Python's `datetime` library, ensuring that only future events are displayed during searches.
+- The admin password is encrypted for security reasons.
 
+## Technologies Used
+- **Flask**: A web framework used to create the REST API.
+- **Flask-PyMongo**: An extension to integrate Flask with MongoDB.
+- **MongoDB**: A NoSQL database for storing users and events.
+- **Werkzeug**: Provides tools for encrypting and securely comparing passwords.
+- **Docker**: Used for containerizing the Flask application and MongoDB for easy deployment and scaling.
+- **Python 3.9**: The programming language used to write the application.
+- **pymongo**: The native Python driver for connecting to MongoDB.
 
-## Επιπλέον Παραδοχές και Παρεκκλίσεις
-- Ο διαχειριστής (admin) δημιουργείται αυτόματα όταν ξεκινά το σύστημα και δεν μπορεί να εγγραφεί όπως οι κανονικοί χρήστες. Τα στοιχεία σύνδεσης του διαχειριστή είναι:
-  - **Όνομα χρήστη**: `admin`
-  - **Κωδικός**: `@dm!n69%`
-- Το σύστημα υποθέτει ότι τα events αποθηκεύονται σε cookies.
-- Οι ημερομηνίες εκδηλώσεων συγκρίνονται χρησιμοποιώντας τη βιβλιοθήκη `datetime` της Python, εξασφαλίζοντας ότι εμφανίζονται μόνο μελλοντικές εκδηλώσεις κατά την αναζήτηση.
-- Ο κωδικός πρόσβασης του διαχειριστή είναι κρυπτογραφημένος για λόγους ασφάλειας.
+## File Descriptions
 
-## Χρησιμοποιούμενες Τεχνολογίες
-- **Flask**: Web framework για τη δημιουργία του REST API.
-- **Flask-PyMongo**: Επέκταση για την ενσωμάτωση του Flask με το MongoDB.
-- **MongoDB**: NoSQL βάση δεδομένων για την αποθήκευση χρηστών και εκδηλώσεων.
-- **Werkzeug**: Παρέχει εργαλεία για την κρυπτογράφηση και ασφαλή σύγκριση κωδικών πρόσβασης.
-- **Docker**: Χρησιμοποιείται για την containerization της εφαρμογής Flask και του MongoDB για εύκολη ανάπτυξη και κλιμάκωση.
-- **Python 3.9**: Η γλώσσα στην οποία είναι γραμμένη η εφαρμογή.
-- **pymongo**: Το native Python driver για τη σύνδεση με το MongoDB.
+- **code.py**: The main application file containing all the API routes, including user registration, login, event creation, etc.
+- **Dockerfile**: Contains instructions for building the Docker image of the Flask application, installing dependencies, and starting the app.
+- **docker-compose.yaml**: Defines the services (Flask and MongoDB), their configurations, and network settings. It manages the execution of multiple containers.
+- **requirements.txt**: A list of Python dependencies required for the project (Flask, Flask-PyMongo, Werkzeug, pymongo).
+- **/data/**: A folder mounted to the MongoDB container for data storage, ensuring data persistence even if the container is deleted.
 
-## Περιγραφή των Αρχείων
+## How to Run the System
 
-- **code.py**: Το κύριο αρχείο της εφαρμογής που περιέχει όλα τα API routes, συμπεριλαμβανομένων της εγγραφής χρηστών, της σύνδεσης, της δημιουργίας εκδηλώσεων κ.ά.
-- **Dockerfile**: Περιέχει οδηγίες για τη δημιουργία του Docker image της εφαρμογής Flask, εγκαθιστά τις εξαρτήσεις και εκκινεί την εφαρμογή.
-- **docker-compose.yaml**: Ορίζει τις υπηρεσίες (Flask και MongoDB), τις ρυθμίσεις τους και το δίκτυο. Οργανώνει την εκτέλεση πολλαπλών κοντέινερ.
-- **requirements.txt**: Λίστα με τις Python εξαρτήσεις που απαιτούνται για το έργο (Flask, Flask-PyMongo, Werkzeug, pymongo).
-- **/data/**: Ένας φάκελος που είναι συνδεδεμένος στο κοντέινερ του MongoDB για την αποθήκευση δεδομένων, ώστε να διασφαλίζεται η διατήρηση των δεδομένων σε περίπτωση που διαγραφεί το κοντέινερ.
+### Prerequisites
+Before running the system, ensure the following are installed:
 
-## Πώς Εκτελείται το Σύστημα
+- **Docker**: Docker allows you to run the application inside containers, so you can run the MongoDB database and Flask application without having to install everything separately.
+- **Docker Compose**: Lets you start multiple services (Flask, MongoDB) simultaneously and manage them through `docker-compose.yaml`.
 
-###Προαπαιτούμενα
-Πριν εκτελέσoυμε το σύστημα, έχουμε εγκαταστήσει τα παρακάτω:
+### Steps to Run
 
--Docker: Το Docker σας επιτρέπει να εκτελείτε την εφαρμογή μέσα σε κοντέινερ, ώστε να μπορείτε να εκτελείτε τη βάση δεδομένων MongoDB και την εφαρμογή Flask χωρίς 
- να χρειάζεται να εγκαταστήσετε ξεχωριστά όλα τα εξαρτήματα.
--Docker Compose: Σας επιτρέπει να εκκινήσετε πολλές υπηρεσίες (Flask, MongoDB) ταυτόχρονα και να τις διαχειριστείτε μέσω του `docker-compose.yaml`.
-
-### Βήματα Εκτέλεσης
-
-1. **Κλωνοποίηση του Repository**: Αρχικά, θα χρειαστεί να κατεβάσουμε τα αρχεία του έργου από το GitHub ή τον αποθηκευτικό χώρο όπου βρίσκονται. Εκτελούμε την ακόλουθη εντολή για την κλωνοποιήση του repository:
+1. **Clone the Repository**: First, download the project files from GitHub or the storage location where they are hosted. Run the following command to clone the repository:
    ```bash
    git clone https://github.com/XristinaMast/YpoxreotikiErgasia24_E20095_Mastoraki_Xristina-Eleni
    cd your-repository
    ```
-   Η εντολή αυτή δημιουργεί ένα τοπικό αντίγραφο του έργου και μας μεταφέρει στον κατάλληλο φάκελο όπου βρίσκεται το αρχείο `docker-compose.yaml`.
+   This command creates a local copy of the project and takes you to the appropriate folder where the `docker-compose.yaml` file is located.
 
-2. **Δημιουργία και Εκκίνηση της Εφαρμογής**: 
-  Το docker-compose χρησιμοποιείται για να εκκινήσει τόσο την εφαρμογή Flask όσο και το MongoDB μέσα σε ξεχωριστά κοντέινερ. Αφού βεβαιωθούμε ότι βρισκόμαστε στον κατάλληλο φάκελο, εκτελούμε την ακόλουθη εντολή:
+2. **Create and Start the Application**: 
+   Docker Compose is used to start both the Flask application and MongoDB in separate containers. Once in the correct folder, run the following command:
    ```bash
    docker-compose up
    ```
-  Τι συμβαίνει όταν εκτελέσουμε την παραπάνω εντολή:
-  -MongoDB κοντέινερ: Ένα κοντέινερ με το MongoDB εκκινείται, και η βάση δεδομένων είναι προσβάσιμη στη θύρα 27017. Ένα volume (./data:/data/db) διασφαλίζει ότι τα δεδομένα θα αποθηκεύονται στον τοπικό σας δίσκο και όχι 
-   μόνο μέσα στο κοντέινερ.
-  - Flask κοντέινερ: Ένα κοντέινερ με το Python Flask API εκκινείται στη θύρα 5000, και επικοινωνεί με το MongoDB μέσω της διεύθυνσης mongodb://mongodb:27017/HospitalDB.
-  Αν όλα τα κοντέινερ ξεκινήσουν με επιτυχία, θα δείτε κάτι σαν το παρακάτω στο terminal σας:
+   What happens when you run the above command:
+   - **MongoDB container**: A container with MongoDB starts, and the database is accessible on port 27017. A volume (./data:/data/db) ensures that data is stored on your local disk and not only inside the container.
+   - **Flask container**: A container with the Python Flask API starts on port 5000, communicating with MongoDB via the address `mongodb://mongodb:27017/HospitalDB`.
+   If all containers start successfully, you will see something like this in your terminal:
 
-  ```bash
-  Starting mongodb ... done
-  Starting flask ... done
-  flask |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
-  ```
-   
-3. **Πρόσβαση στην Εφαρμογή**:
-   Για να επιβεβαιώσουμε ότι η εφαρμογή εκτελείται σωστά, ανοίγουμε έναν browser και πληκτρολογούμε τη διεύθυνση:
+   ```bash
+   Starting mongodb ... done
+   Starting flask ... done
+   flask |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+   ```
+
+3. **Access the Application**:  
+   To confirm that the application is running correctly, open a browser and go to the address:
    ```
    http://localhost:5000
    ```
 
-4. **Σταμάτημα του Συστήματος**:
-   Για να σταματήσετε τα κοντέινερ, πατήστε `Ctrl + C` στο terminal και στη συνέχεια εκτελέστε:
+4. **Stopping the System**:  
+   To stop the containers, press `Ctrl + C` in the terminal and then run:
    ```bash
    docker-compose down
    ```
-  Αυτή η εντολή θα σταματήσει και θα απομακρύνει τα κοντέινερ, αλλά τα δεδομένα στη βάση δεδομένων θα διατηρηθούν στο φάκελο ./data.
-  
-### Διατήρηση Δεδομένων
-Ο φάκελος `./data` που δημιουργείται στον τοπικό δίσκο είναι συνδεδεμένος με το κοντέινερ της βάσης δεδομένων MongoDB. Αυτό σημαίνει ότι ακόμα κι αν διαγράψουμε το κοντέινερ, τα δεδομένα δεν θα χαθούν.
+   This command will stop and remove the containers, but the data in the database will be retained in the `./data` folder.
 
-## Πώς να Χρησιμοποιήσετε το Σύστημα (με Παραδείγματα Εκτέλεσης)
+### Data Persistence
+The `./data` folder created on the local disk is mounted to the MongoDB container. This means that even if you delete the container, the data will not be lost.
 
-Ακολουθούν οι λεπτομέρειες για την αλληλεπίδραση με το σύστημα μέσω των API endpoints. Μπορείτε να χρησιμοποιήσετε εργαλεία όπως το **Postman** ή το **cURL** για να στείλετε αιτήματα.
+## How to Use the System (with Execution Examples)
 
-### 1. **Εγγραφή Διαχειριστή (Προκαθορισμένος Admin)**
-   - Ο διαχειριστής δημιουργείται αυτόματα κατά την εκκίνηση του συστήματος και δεν χρειάζεται να εγγραφεί μέσω του API.
+Below are details on interacting with the system via the API endpoints. You can use tools like **Postman** or **cURL** to send requests.
 
-   - Διαπιστευτήρια:
-     - Όνομα χρήστη: `admin`
-     - Κωδικός: `@dm!n69%`
+### 1. **Admin Registration (Predefined Admin)**
+   - The admin is automatically created when the system starts and does not need to be registered via the API.
 
-### 2. **Εγγραφή Χρήστη**
-  Κάθε νέος χρήστης μπορεί να εγγραφεί στο σύστημα με ένα αίτημα POST στο endpoint /register. Το API δέχεται ένα JSON αντικείμενο που περιλαμβάνει τα στοιχεία του χρήστη.
-   - **Διεύθυνση**: `/register`
-   - **Μέθοδος**: `POST`
-   - **Παράδειγμα Αιτήματος**:
+   - Credentials:
+     - Username: `admin`
+     - Password: `@dm!n69%`
+
+### 2. **User Registration**
+  Any new user can register in the system with a POST request to the `/register` endpoint. The API accepts a JSON object containing the user's details.
+   - **URL**: `/register`
+   - **Method**: `POST`
+   - **Example Request**:
      ```bash
      curl -X POST http://localhost:5000/register \
      -H "Content-Type: application/json" \
@@ -112,15 +108,15 @@
        "password": "mypassword"
      }'
      ```
-   - **Αναμενόμενη Απόκριση**:
+   - **Expected Response**:
      - 201: "User registered successfully!"
      - 409: "Username or Email already exists!"
 
-### 3. **Σύνδεση Χρήστη**
-  Αφού εγγραφεί ένας χρήστης, μπορεί να συνδεθεί στο σύστημα για να αποκτήσει πρόσβαση σε λειτουργίες όπως η δημιουργία και διαχείριση εκδηλώσεων.
-   - **Διεύθυνση**: `/login`
-   - **Μέθοδος**: `POST`
-   - **Παράδειγμα Αιτήματος**:
+### 3. **User Login**
+  After registering, a user can log into the system to gain access to features like creating and managing events.
+   - **URL**: `/login`
+   - **Method**: `POST`
+   - **Example Request**:
      ```bash
      curl -X POST http://localhost:5000/login \
      -H "Content-Type: application/json" \
@@ -129,16 +125,17 @@
        "password": "mypassword"
      }'
      ```
-   - **Αναμενόμενη Απόκριση**:
+   - **Expected Response**:
      - 200: "Login successful!"
      - 401: "Invalid username or password!"
-Μετά τη σύνδεση, μπορούμε να χρησιμοποιήσουμε το session cookie για να κάνουμε άλλες ενέργειες (δημιουργία εκδηλώσεων, προβολή εκδηλώσεων κλπ.).
+   
+   After login, we can use the session cookie to perform other actions (creating events, viewing events, etc.).
 
-### 4. **Δημιουργία Εκδήλωσης**
-  Οι χρήστες μπορούν να δημιουργήσουν εκδηλώσεις μετά τη σύνδεσή τους. Οι εκδηλώσεις αυτές θα είναι διαθέσιμες για προβολή και αναζήτηση από άλλους χρήστες.
-   - **Διεύθυνση**: `/events`
-   - **Μέθοδος**: `POST`
-   - **Παράδειγμα Αιτήματος**:
+### 4. **Creating an Event**
+  Users can create events after logging in. These events will be available for viewing and searching by other users.
+   - **URL**: `/events`
+   - **Method**: `POST`
+   - **Example Request**:
      ```bash
      curl -X POST http://localhost:5000/events \
      -H "Content-Type: application/json" \
@@ -152,41 +149,41 @@
        "event_type": "conference"
      }'
      ```
-   - **Αναμενόμενη Απόκριση**:
+   - **Expected Response**:
      - 201: "Event created successfully!"
-     - 403: "Please log in first!" (εάν ο χρήστης δεν είναι συνδεδεμένος)
+     - 403: "Please log in first!" (if the user is not logged in)
 
-### 5. **Προβολή Όλων των Εκδηλώσεων**
-Οι χρήστες μπορούν να δουν όλες τις μελλοντικές εκδηλώσεις που είναι καταχωρημένες στο σύστημα με ένα αίτημα GET στο endpoint `/events`.
-   - **Διεύθυνση**: `/events`
-   - **Μέθοδος**: `GET`
-   - **Παράδειγμα Αιτήματος**:
+### 5. **Viewing All Events**
+  Users can view all future events registered in the system with a GET request to the `/events` endpoint.
+   - **URL**: `/events`
+   - **Method**: `GET`
+   - **Example Request**:
      ```bash
      curl -X GET http://localhost:5000/events -b cookie.txt
      ```
-   - **Αναμενόμενη Απόκριση**:
-     Μια λίστα με όλες τις μελλοντικές εκδηλώσεις σε μορφή JSON.
+   - **Expected Response**:  
+     A list of all upcoming events in JSON format.
 
-     **Παράδειγμα απόκρισης:**
-        ```jason
-        [
-          {
-            "_id": "614c0e7e6f8b4c35b048c123",
-            "event_title": "Tech Conference",
-            "event_description": "A conference on tech trends",
-            "event_date": "2024-10-10",
-            "event_hour": "10:00",
-            "event_placement": "New York",
-            "event_type": "conference"
-          }
-      ]
-    ```
+     **Example response:**
+     ```json
+     [
+       {
+         "_id": "614c0e7e6f8b4c35b048c123",
+         "event_title": "Tech Conference",
+         "event_description": "A conference on tech trends",
+         "event_date": "2024-10-10",
+         "event_hour": "10:00",
+         "event_placement": "New York",
+         "event_type": "conference"
+       }
+     ]
+     ```
 
-### 6. **Ενημέρωση Εκδήλωσης**
-Ο δημιουργός μιας εκδήλωσης μπορεί να την ενημερώσει χρησιμοποιώντας το endpoint `/events/<id>`. Η ενημέρωση αφορά τα πεδία όπως ο τίτλος, η περιγραφή, η ημερομηνία κ.λπ.
-   - **Διεύθυνση**: `/events/<id>`
-   - **Μέθοδος**: `PUT`
-   - **Παράδειγμα Αιτήματος**:
+### 6. **Updating an Event**
+  The creator of an event can update it using the `/events/<id>` endpoint. The update can include fields like title, description, date, etc.
+   - **URL**: `/events/<id>`
+   - **Method**: `PUT`
+   - **Example Request**:
      ```bash
      curl -X PUT http://localhost:5000/events/614c0e7e6f8b4c35b048c123 \
      -H "Content-Type: application/json" \
@@ -195,37 +192,23 @@
        "event_title": "Updated Tech Conference",
        "event_description": "An updated conference description",
        "event_date": "2024-10-15",
-       "event_hour": "11:00",
-       "event_placement": "San Francisco",
-       "event_type": "conference"
+       "event_hour": "
+
+14:00"
      }'
      ```
-   - **Αναμενόμενη Απόκριση**:
+   - **Expected Response**:
      - 200: "Event updated successfully!"
-     - 403: "Please log in first!"
+     - 403: "Unauthorized!" (if the event does not belong to the logged-in user)
 
-### 7. **Διαγραφή Εκδήλωσης**
-Οι διαχειριστές και οι δημιουργοί μιας εκδήλωσης μπορούν να τη διαγράψουν χρησιμοποιώντας το endpoint /events/<id>.
-   - **Διεύθυνση**: `/events/<id>`
-   - **Μέθοδος**: `DELETE`
-   - **Παράδειγμα Αιτήματος**:
+### 7. **Deleting an Event**
+  Users can delete their own events using the `/events/<id>` endpoint.
+   - **URL**: `/events/<id>`
+   - **Method**: `DELETE`
+   - **Example Request**:
      ```bash
      curl -X DELETE http://localhost:5000/events/614c0e7e6f8b4c35b048c123 -b cookie.txt
      ```
-   - **Αναμενόμενη Απόκριση**:
+   - **Expected Response**:
      - 200: "Event deleted successfully!"
-     - 403: "Unauthorized action!"
-
-### 8. **Αναζήτηση Εκδηλώσεων**
-Οι χρήστες μπορούν να αναζητήσουν εκδηλώσεις βάσει του τίτλου, του τύπου ή του μέρους όπου θα λάβουν χώρα, χρησιμοποιώντας το endpoint `/search`.
-   - **Διεύθυνση**: `/search`
-   - **Μέθοδος**: `GET`
-   - **Παράδειγμα Αιτήματος**:
-     ```bash
-     curl -X GET "http://localhost:5000/search?event_title=Tech&event_type=conference" -b cookie.txt
-     ```
-   - **Αναμενόμενη Απόκριση**:
-     Μια λίστα με εκδηλώσεις που ταιριάζουν με τα κριτήρια αναζήτησης σε μορφή JSON.
-
-## Αναφορές
-https://github.com/karamolegkos/Information-Systems-Lab/tree/master
+     - 403: "Unauthorized!" (if the event does not belong to the logged-in user)
